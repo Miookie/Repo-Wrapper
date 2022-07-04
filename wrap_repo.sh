@@ -1,5 +1,8 @@
 #! /bin/bash
 
+GREEN='\033[0;32m'
+NC='\033[0m'
+
 get_input(){
     touch tmp/repos_list.txt
     echo "" >> ./tmp/repos_list.txt
@@ -23,7 +26,11 @@ make_submodules(){
             #comment line
             continue
         fi
-        git submodule add "$line"   
+
+        git submodule add "$line" 
+        echo -e "${GREEN}SUCESSFULLY ADDED $line TO YOUR REPOSITORY"
+        echo -e "${NC}"   
+
     done < $file  
 }
 mkdir tmp
