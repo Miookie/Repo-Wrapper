@@ -14,7 +14,13 @@ get_input(){
 
 make_submodules(){
 
-    file='./tmp/repos_list.txt'  
+    if [ $# -eq 0 ]
+    then
+        file='./tmp/repos_list.txt' 
+    else
+        file="$1"
+    fi
+
     while read line; do 
         if [ -z "$line" ]
         then
@@ -27,13 +33,23 @@ make_submodules(){
             continue
         fi
 
-        git submodule add "$line" 
+        #git submodule add "$line" 
         echo -e "${GREEN}SUCESSFULLY ADDED $line TO YOUR REPOSITORY"
         echo -e "${NC}"   
 
     done < $file  
 }
-mkdir tmp
-get_input
-make_submodules
-rm -r tmp/
+
+
+if [ $# -eq 0 ]
+then
+    mkdir tmp
+    get_input
+    make_submodules
+    rm -r tmp/
+else
+    if [ "$1" = "-f" ]
+    then
+        make_submodules "$2"
+    fi
+fi
