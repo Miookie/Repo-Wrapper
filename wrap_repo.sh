@@ -8,7 +8,25 @@ get_input(){
     echo "# https://github.com/Miookie/Repo-Wrapper.git " >> ./tmp/repos_list.txt
     nano ./tmp/repos_list.txt
 }
+
+make_submodules(){
+
+    file='./tmp/repos_list.txt'  
+    while read line; do 
+        if [ -z "$line" ]
+        then
+            #empty line
+            continue
+        fi 
+        if [ ${line:0:1} = '#' ]
+        then
+            #comment line
+            continue
+        fi
+        git submodule add "$line"   
+    done < $file  
+}
 mkdir tmp
 get_input
-
+make_submodules
 rm -r tmp/
