@@ -20,4 +20,4 @@ if __name__=="__main__":
     if command=="-n":
         print(extractName(link),end="")
     elif command=="-d":
-        print(extractDescription(link))
+        print(extractDescription(link),end="")

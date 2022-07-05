@@ -35,9 +35,8 @@ make_submodules(){
 
         #git submodule add "$line"
         echo -n "* [" >> test.md
-        echo -n "$line](" >> test.md
         python3 main.py -n "$line" >> test.md
-        echo -n "): " >> test.md
+        echo -n "]($line): " >> test.md
         python3 main.py -d "$line" >> test.md 
         echo -e "\n" >> test.md
         echo -e "${GREEN}SUCESSFULLY ADDED $line TO YOUR REPOSITORY"
