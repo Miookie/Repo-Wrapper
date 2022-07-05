@@ -18,6 +18,6 @@ if __name__=="__main__":
     command = sys.argv[1]
     link = sys.argv[2]
     if command=="-n":
-        print(extractName(link))
+        print(extractName(link),end="")
     elif command=="-d":
         print(extractDescription(link))
