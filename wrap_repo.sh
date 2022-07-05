@@ -2,6 +2,7 @@
 
 GREEN='\033[0;32m'
 NC='\033[0m'
+MARKDOWN_FILE="README.md"
 
 get_input(){
     touch tmp/repos_list.txt
@@ -34,11 +35,11 @@ make_submodules(){
         fi
 
         git submodule add "$line"
-        echo -n "* [" >> test.md
-        python3 ./tmp/main.py -n "$line" >> test.md
-        echo -n "]($line): " >> test.md
-        python3 ./tmp/main.py -d "$line" >> test.md 
-        echo -e "\n" >> test.md
+        echo -n "* [" >> "$MARKDOWN_FILE"
+        python3 ./tmp/main.py -n "$line" >> "$MARKDOWN_FILE"
+        echo -n "]($line): " >> "$MARKDOWN_FILE"
+        python3 ./tmp/main.py -d "$line" >> "$MARKDOWN_FILE" 
+        echo -e "\n" >> "$MARKDOWN_FILE"
         echo -e "${GREEN}SUCESSFULLY ADDED $line TO YOUR REPOSITORY"
         echo -e "${NC}"   
 
