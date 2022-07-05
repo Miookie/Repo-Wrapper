@@ -33,11 +33,11 @@ make_submodules(){
             continue
         fi
 
-        #git submodule add "$line"
+        git submodule add "$line"
         echo -n "* [" >> test.md
-        python3 main.py -n "$line" >> test.md
+        python3 ./tmp/main.py -n "$line" >> test.md
         echo -n "]($line): " >> test.md
-        python3 main.py -d "$line" >> test.md 
+        python3 ./tmp/main.py -d "$line" >> test.md 
         echo -e "\n" >> test.md
         echo -e "${GREEN}SUCESSFULLY ADDED $line TO YOUR REPOSITORY"
         echo -e "${NC}"   
@@ -45,16 +45,30 @@ make_submodules(){
     done < $file  
 }
 
+create_python_file(){
+    cd tmp
+    wget -c https://raw.githubusercontent.com/Miookie/Repo-Wrapper/main/main.py
+    cd ..
+}
+
+remove_temp_files(){
+    rm -r tmp/
+    rm geckodriver.log
+}
+
+mkdir tmp
+create_python_file
 
 if [ $# -eq 0 ]
 then
-    mkdir tmp
     get_input
     make_submodules
-    rm -r tmp/
 else
     if [ "$1" = "-f" ]
     then
         make_submodules "$2"
     fi
 fi
+
+remove_temp_files
+
