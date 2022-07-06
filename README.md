@@ -60,7 +60,7 @@ The 2 steps above need to be done only once (at the very beginning).
 - If the script is run with no options, it will open a nano window where you can provide the links to your repositories.
 - ```-f <file_path>```: With this option, the script will read the links to your repositories from the given file.
 
-## ToDo:
+## ToDo
 
 * Delete previously-related files in `.git/` using `grep`.  
 * New argument option to input repositories from the command line. 
